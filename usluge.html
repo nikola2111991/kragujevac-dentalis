@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usluge | Stomatološka ordinacija Dentalis Kragujevac</title>
+  <meta name="description" content="Laserska stomatologija, opsta i decja stomatologija, estetska stomatologija, protetika, oralna hirurgija. Ordinacija Dentalis, Kragujevac.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #1a5276; --accent: #148f77; --dark: #1c2833;
+      --text: #2c3e50; --muted: #5d6d7e; --light: #f8f9fa;
+      --border: #e8ecef; --white: #ffffff; --radius: 16px; --radius-sm: 10px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--white); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--dark); line-height: 1.25; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    .header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 72px; }
+    .logo { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--primary); }
+    .logo span { color: var(--accent); }
+    .nav { display: flex; align-items: center; gap: 32px; }
+    .nav a { font-size: 0.92rem; font-weight: 500; color: var(--muted); transition: color 0.2s; }
+    .nav a:hover, .nav a.active { color: var(--primary); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 28px; border-radius: 50px; font-size: 0.92rem; font-weight: 600; transition: all 0.25s; cursor: pointer; border: none; font-family: 'DM Sans', sans-serif; }
+    .btn-primary { background: var(--primary); color: var(--white); }
+    .btn-primary:hover { background: #154360; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(26,82,118,0.25); }
+    .btn-outline { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); }
+    .btn-outline:hover { background: var(--primary); color: var(--white); }
+    .btn-accent { background: var(--accent); color: var(--white); }
+    .btn-accent:hover { background: #117a65; }
+    .btn-white { background: var(--white); color: var(--primary); }
+    .nav .btn { padding: 10px 24px; font-size: 0.88rem; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+    .hamburger span { width: 24px; height: 2px; background: var(--dark); transition: all 0.3s; border-radius: 2px; }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-nav { display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: var(--white); z-index: 99; padding: 32px 24px; flex-direction: column; gap: 8px; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-size: 1.1rem; font-weight: 500; padding: 14px 0; border-bottom: 1px solid var(--border); color: var(--text); }
+    .mobile-nav .btn { margin-top: 16px; text-align: center; }
+
+    section { padding: 96px 24px; }
+    .section-label { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 12px; }
+    .section-title { font-size: 2.3rem; margin-bottom: 20px; }
+    .section-subtitle { font-size: 1.05rem; color: var(--muted); max-width: 560px; margin-bottom: 48px; line-height: 1.75; }
+    .text-center { text-align: center; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+
+    /* PAGE HERO */
+    .page-hero { padding: 140px 24px 64px; background: linear-gradient(135deg, #f8fbfd 0%, #eef5f9 100%); text-align: center; }
+    .page-hero h1 { font-size: 2.8rem; margin-bottom: 16px; }
+    .page-hero p { font-size: 1.1rem; color: var(--muted); max-width: 540px; margin: 0 auto; }
+
+    /* SERVICES GRID */
+    .services-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+    .service-card { border-radius: var(--radius); overflow: hidden; background: var(--white); border: 1px solid var(--border); transition: transform 0.25s, box-shadow 0.25s; }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+    .service-card img { width: 100%; height: 220px; object-fit: cover; }
+    .service-card-body { padding: 28px; }
+    .service-card h3 { font-size: 1.15rem; margin-bottom: 10px; font-family: 'DM Sans', sans-serif; font-weight: 600; }
+    .service-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+    .service-card .btn { padding: 10px 22px; font-size: 0.85rem; }
+
+    /* SERVICE DETAIL */
+    .service-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding: 80px 0; border-bottom: 1px solid var(--border); }
+    .service-detail:last-child { border-bottom: none; }
+    .service-detail.reverse { direction: rtl; }
+    .service-detail.reverse > * { direction: ltr; }
+    .service-detail img { width: 100%; height: 360px; object-fit: cover; border-radius: var(--radius); }
+    .service-detail h2 { font-size: 1.9rem; margin-bottom: 16px; }
+    .service-detail p { font-size: 0.95rem; color: var(--muted); line-height: 1.75; margin-bottom: 12px; }
+    .service-detail .detail-info { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+    .detail-info-item { background: var(--light); padding: 16px; border-radius: var(--radius-sm); }
+    .detail-info-item .label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 4px; }
+    .detail-info-item .value { font-size: 0.92rem; font-weight: 600; color: var(--dark); }
+
+    .cta-banner { background: var(--primary); padding: 80px 24px; text-align: center; }
+    .cta-banner h2 { color: var(--white); font-size: 2.2rem; margin-bottom: 16px; }
+    .cta-banner p { color: rgba(255,255,255,0.8); font-size: 1.05rem; margin-bottom: 32px; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    .footer { background: var(--dark); color: rgba(255,255,255,0.6); padding: 40px 24px; text-align: center; font-size: 0.85rem; }
+    .footer a { color: rgba(255,255,255,0.8); }
+    .footer .credit { margin-top: 8px; font-size: 0.78rem; }
+
+    @media (max-width: 900px) {
+      .nav { display: none; }
+      .hamburger { display: flex; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-detail { grid-template-columns: 1fr; gap: 32px; }
+      .service-detail.reverse { direction: ltr; }
+      .page-hero h1 { font-size: 2rem; }
+    }
+    @media (max-width: 480px) {
+      .page-hero { padding: 110px 20px 48px; }
+      .page-hero h1 { font-size: 1.75rem; }
+      section { padding: 64px 20px; }
+      .service-detail .detail-info { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Dentalis<span>.</span></a>
+    <nav class="nav">
+      <a href="index.html">Pocetna</a>
+      <a href="usluge.html" class="active">Usluge</a>
+      <a href="o-nama.html">O nama</a>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="tel:+381693608611" class="btn btn-primary">Pozovite nas</a>
+    </nav>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+<div class="mobile-nav" id="mobileNav">
+  <a href="tel:+381693608611" class="btn btn-primary">Pozovite nas</a>
+  <a href="index.html">Pocetna</a>
+  <a href="usluge.html">Usluge</a>
+  <a href="o-nama.html">O nama</a>
+  <a href="kontakt.html">Kontakt</a>
+  <a href="https://wa.me/381693608611" class="btn btn-accent">Pisite nam na WhatsApp</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="section-label">Nase usluge</div>
+  <h1>Sve sto vam treba za zdrav osmeh. Na jednom mestu.</h1>
+  <p>Od laserskih tretmana do decje stomatologije. Dr Ivan i tim rade pazljivo, temeljno i sa jednim ciljem: da odete zadovoljni.</p>
+</section>
+
+<!-- SERVICES GRID -->
+<section style="background: var(--white);">
+  <div class="container">
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="photos/photo_01.jpg" alt="Laserska stomatologija Dentalis" loading="lazy">
+        <div class="service-card-body">
+          <h3>Laserska stomatologija</h3>
+          <p>Biolase laser za precizne intervencije sa manje bola i brzim zarastanjem. Manje anestezije, kraci oporavak.</p>
+          <a href="tel:+381693608611" class="btn btn-outline">Zakazite</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="photos/photo_07.jpg" alt="Opsta stomatologija Dentalis" loading="lazy">
+        <div class="service-card-body">
+          <h3>Opsta stomatologija</h3>
+          <p>Pregledi, plombe, lecenje karijesa, ciscenje kamenca. Osnova za zdrave zube, uradjena kako treba.</p>
+          <a href="tel:+381693608611" class="btn btn-outline">Zakazite</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="photos/photo_02.jpg" alt="Decja stomatologija Dentalis" loading="lazy">
+        <div class="service-card-body">
+          <h3>Decja stomatologija</h3>
+          <p>Pristup prilagodjen deci svih uzrasta. Strpljivo, pazljivo, i sa osmehom. Da poseta zubarou ne bude strasna.</p>
+          <a href="tel:+381693608611" class="btn btn-outline">Zakazite</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=800&q=80" alt="Estetska stomatologija" loading="lazy">
+        <div class="service-card-body">
+          <h3>Estetska stomatologija</h3>
+          <p>Izbeljivanje zuba, fasete, korekcije osmeha. Jer osmeh je prva stvar koju ljudi primete.</p>
+          <a href="tel:+381693608611" class="btn btn-outline">Zakazite</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="photos/photo_05.jpg" alt="Oralna hirurgija Dentalis" loading="lazy">
+        <div class="service-card-body">
+          <h3>Oralna hirurgija</h3>
+          <p>Vadjenje zuba, vadjenje umnjaka, hirurske intervencije. Sa laserom, brze i bezbolnije.</p>
+          <a href="tel:+381693608611" class="btn btn-outline">Zakazite</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="photos/photo_08.jpg" alt="Protetika Dentalis" loading="lazy">
+        <div class="service-card-body">
+          <h3>Protetika</h3>
+          <p>Krunice, mostovi, proteze. Kvalitetni materijali i precizan rad za rezultat koji traje godinama.</p>
+          <a href="tel:+381693608611" class="btn btn-outline">Zakazite</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LASER DETAIL -->
+<section style="background: var(--light);">
+  <div class="container">
+    <div class="service-detail">
+      <img src="photos/photo_01.jpg" alt="Biolase laser u ordinaciji Dentalis" loading="lazy">
+      <div>
+        <div class="section-label">Istaknuta usluga</div>
+        <h2>Laserska stomatologija. Buducnost koja je vec ovde.</h2>
+        <p>Koristimo Biolase Epic laser, jedan od najnaprednijih dentalnih lasera na svetu. To znaci manje bola tokom intervencije, brze zarastanje tkiva i kraci ukupni oporavak.</p>
+        <p>Za mnoge procedure, laser smanjuje ili potpuno eliminise potrebu za anestezijom. Pacijenti koji su se plasili stomatologa upravo zbog igle i bora, kod nas nalaze drugaciju pricu.</p>
+        <div class="detail-info">
+          <div class="detail-info-item">
+            <div class="label">Manje bola</div>
+            <div class="value">Minimalno invazivni pristup</div>
+          </div>
+          <div class="detail-info-item">
+            <div class="label">Brzi oporavak</div>
+            <div class="value">Do 50% brze zarastanje</div>
+          </div>
+          <div class="detail-info-item">
+            <div class="label">Manje anestezije</div>
+            <div class="value">Cesto bez igle</div>
+          </div>
+          <div class="detail-info-item">
+            <div class="label">Preciznost</div>
+            <div class="value">Laser radi samo gde treba</div>
+          </div>
+        </div>
+        <a href="tel:+381693608611" class="btn btn-primary">Zakazite konsultaciju</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <h2>Imate pitanje o nasim uslugama?</h2>
+  <p>Pozovite nas ili pisite na WhatsApp. Dr Ivan i tim su tu da odgovore na svako pitanje.</p>
+  <div class="cta-buttons">
+    <a href="tel:+381693608611" class="btn btn-white">Pozovite: 069/360-8611</a>
+    <a href="https://wa.me/381693608611" class="btn btn-accent">Pisite na WhatsApp</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2026 Stomatoloska ordinacija Dentalis, Kragujevac. Sva prava zadrzana.</p>
+    <p class="credit">Sajt napravio <a href="https://nikolajanjic.com" target="_blank">Nikola Janjic</a></p>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => { document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20); });
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileNav').classList.toggle('open');
+    document.body.style.overflow = document.getElementById('mobileNav').classList.contains('open') ? 'hidden' : '';
+  }
+</script>
+</body>
+</html>
